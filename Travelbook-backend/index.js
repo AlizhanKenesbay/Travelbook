@@ -18,7 +18,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.get('/', (req, res) => {
-  res.send('api is working');
+  res.send('API is working');
 });
 
 mongoose.set("strictQuery", false);
@@ -29,8 +29,12 @@ async function connect() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
     console.log("MongoDB Database Connected");
+
+    // Start the server after successful connection to MongoDB
+    app.listen(port, () => {
+      console.log("Server is listening on port", port);
+    });
   } catch (err) {
     console.log("MongoDB Database Connection Failed");
   }
@@ -54,7 +58,5 @@ app.use("/api/v1/contact", contactRoute);
 app.use("/api/v1/blogs", blogRoute);
 app.use("/api/v1/comment", commentRoute);
 
-app.listen(port, () => {
-  connect();
-  console.log("Server is listening on port", port);
-});
+// Connect to MongoDB
+connect();
