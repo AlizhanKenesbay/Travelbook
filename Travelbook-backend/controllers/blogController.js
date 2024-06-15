@@ -66,4 +66,17 @@ export const getFeaturedBlogs = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to get featured blogs" });
   }
 };
-  
+
+export const deleteBlog = async (req, res) => {
+  const id = req.params.id;
+  try {
+    await Blog.findByIdAndDelete(id);
+    res.status(200).json({
+      success: true,
+      message: "Blog deleted successfully",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Failed to delete blog" });
+  }
+};

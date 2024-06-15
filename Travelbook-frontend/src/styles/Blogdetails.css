@@ -115,6 +115,9 @@
 .review__item h6 {
   font-size: 1.1rem;
   color: var(--text-color);
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .review__item span {

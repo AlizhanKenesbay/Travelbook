@@ -4,14 +4,14 @@ import {
   getTourReviews,
   deleteReview,
 } from "../controllers/reviewController.js";
-import verifyUser  from '../utils/verifyToken.js';
+import verifyToken, {verifyAdmin} from "../utils/verifyToken.js";
 
 const reviewRoute = express.Router();
 
-reviewRoute.post('/:TourId' ,createReview);
+reviewRoute.post('/:TourId', createReview);
 
 reviewRoute.get('/:TourId', getTourReviews);
 
-reviewRoute.delete('/:reviewId',verifyUser, deleteReview);
+reviewRoute.delete('/:reviewId', verifyToken, verifyAdmin, deleteReview);
 
 export default reviewRoute;

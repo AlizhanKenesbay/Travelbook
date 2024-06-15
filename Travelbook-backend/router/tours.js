@@ -1,6 +1,6 @@
 import express from "express";
-import { createTour, deleteTour, getAllTour, getFeaturedTour, getSingleTour, getTourCount, updateTour } from "../controllers/tourController.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+import { createTour, deleteTour, getAllTour, getFeaturedTour, getSingleTour, updateTour } from "../controllers/tourController.js";
+import verifyToken, { verifyAdmin } from "../utils/verifyToken.js";
 
 const tourRoute = express.Router();
 
@@ -8,14 +8,12 @@ tourRoute.get("/featured", getFeaturedTour);
 
 tourRoute.get("/:id", getSingleTour);
 
-tourRoute.post("/", createTour);
+tourRoute.post("/", verifyToken, verifyAdmin, createTour);
 
-tourRoute.put("/:id", updateTour);
+tourRoute.put("/:id", verifyToken, verifyAdmin, updateTour);
 
-tourRoute.delete("/:id", deleteTour);
+tourRoute.delete("/:id", verifyToken, verifyAdmin, deleteTour);
 
 tourRoute.get("/", getAllTour);
-
-tourRoute.get("/count", getTourCount);
 
 export default tourRoute;

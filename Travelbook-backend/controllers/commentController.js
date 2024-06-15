@@ -73,18 +73,13 @@ export const deleteComment = async (req, res) => {
     }
 
     blog.comments.pull(commentId);
-
     await blog.save();
 
-    await comment.remove();
+    await Comment.findByIdAndDelete(commentId);
 
     res.status(200).json({ message: "Comment deleted successfully" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Failed to delete comment" });
+    console.error('Error details:', error); // Выводим подробности ошибки
+    res.status(500).json({ message: "Failed to delete comment", error: error.message });
   }
 };
-
-
-
-

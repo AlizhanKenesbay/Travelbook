@@ -31,7 +31,6 @@ async function connect() {
     });
     console.log("MongoDB Database Connected");
 
-    // Start the server after successful connection to MongoDB
     app.listen(port, () => {
       console.log("Server is listening on port", port);
     });
@@ -48,6 +47,7 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(cookieParser());
+
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/tours", tourRoute);
 app.use("/api/v1/search", searchRoute);
@@ -58,5 +58,4 @@ app.use("/api/v1/contact", contactRoute);
 app.use("/api/v1/blogs", blogRoute);
 app.use("/api/v1/comment", commentRoute);
 
-// Connect to MongoDB
 connect();

@@ -174,7 +174,7 @@ const Booking = ({ tour, avgRating, totalRating, reviews }) => {
           </ListGroupItem>
         </ListGroup>
         <Button className="btn primary__btn w-100 mt-4" onClick={handleClick}>
-          Оформить
+          Разместить бронь
         </Button>
       </div>
     </div>

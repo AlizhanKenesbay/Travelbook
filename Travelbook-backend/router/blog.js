@@ -4,7 +4,9 @@ import {
   updateBlog,
   getSingleBlog,
   getAllBlogs,
-  getFeaturedBlogs} from '../controllers/blogController.js';
+  getFeaturedBlogs,
+  deleteBlog} from '../controllers/blogController.js';
+import verifyToken, {verifyAdmin} from "../utils/verifyToken.js";
 
 const blogRoute = express.Router();
 
@@ -17,5 +19,7 @@ blogRoute.get('/', getAllBlogs);
 blogRoute.post('/', createBlog);
 
 blogRoute.put('/:id', updateBlog);
+
+blogRoute.delete('/:id', verifyToken, verifyAdmin, deleteBlog);
 
 export default blogRoute;

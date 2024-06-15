@@ -98,26 +98,11 @@ export const getFeaturedTour = async (req, res) => {
   }
 };
 
-export const getTourCount = async (req, res) => {
-  try {
-    const tourCount = await Tour.estimatedDocumentCount();
-    res.status(200).json({
-      success: true,
-      message: "Tours count successfully",
-      data: tourCount,
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: "Failed to get tours count" });
-  }
-};
-
 export default {
   createTour,
   deleteTour,
   updateTour,
   getSingleTour,
   getAllTour,
-  getFeaturedTour,
-  getTourCount,
+  getFeaturedTour
 };

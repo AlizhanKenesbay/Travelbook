@@ -180,7 +180,7 @@ const BlogDetails = () => {
                               <h5>{comment.username}</h5>
                               <p>
                                 {new Date(comment.createdAt).toLocaleDateString(
-                                  "en-in",
+                                  "ru-in",
                                   options
                                 )}
                               </p>

@@ -6,7 +6,7 @@ const errorHandler = (res, statusCode, message) => {
 };
 
 const verifyToken = async (req, res, next) => {
-  const token = req.headers.authorization;
+  const token = req.cookies.token;
 
   if (!token) {
     return errorHandler(res, 401, 'Токен не предоставлен');
@@ -14,7 +14,7 @@ const verifyToken = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const userId = decoded._id;
+    const userId = decoded.userId;
 
     const user = await User.findById(userId);
 

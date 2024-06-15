@@ -43,13 +43,14 @@ export const loginUser = async (req, res) => {
 
     const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '15d' });
 
+    res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+
     res.status(200).json({
       id: user._id,
       username: user.username,
       email: user.email,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
-      token,
     });
   } catch (error) {
     console.error(error);
